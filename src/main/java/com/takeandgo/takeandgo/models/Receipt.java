@@ -26,6 +26,6 @@ public class Receipt {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-   // @OneToMany(mappedBy = "receipt", cascade = CascadeType.ALL)
-   // private List<Items> itemList;
+    @OneToMany(mappedBy = "receipt", cascade = CascadeType.ALL)
+    private List<Item> itemList;
 }
