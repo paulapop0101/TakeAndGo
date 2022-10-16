@@ -25,7 +25,7 @@ public class Card {
     private int CVV;
 
     @ManyToOne
-    @JoinColumn(name = "card_id", referencedColumnName = "id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
 }
