@@ -5,24 +5,25 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="product")
-public class Product {
+@Table(name="item")
+public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String name;
+    private int quantity;
 
-    private String barcode;
+    private float price;
 
-    private  float price;
+    private float price_per_entity;
 
-   // @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-   // private List<Item> itemList;
+   // @ManyToOne
+   // @JoinColumn(name = "product_id", columnDefinition = "id")
+   // private Product product;
+
 }
