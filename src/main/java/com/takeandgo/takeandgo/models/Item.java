@@ -22,8 +22,8 @@ public class Item {
 
     private float price_per_entity;
 
-   // @ManyToOne
-   // @JoinColumn(name = "product_id", columnDefinition = "id")
-   // private Product product;
+//    @ManyToOne
+//    @JoinColumn(name = "product_id", columnDefinition = "id")
+//    private Product product;
 
 }

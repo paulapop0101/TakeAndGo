@@ -23,6 +23,10 @@ public class Product {
 
     private  float price;
 
-   // @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-   // private List<Item> itemList;
+//    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+//    private List<Item> itemList;
+
+    @ManyToOne
+    @JoinColumn(name = "shop_id", referencedColumnName = "id")
+    private Shop shop;
 }
