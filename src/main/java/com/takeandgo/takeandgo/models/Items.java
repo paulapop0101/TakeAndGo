@@ -10,8 +10,8 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="items")
-public class Items {
+@Table(name="item")
+public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -22,11 +22,8 @@ public class Items {
 
     private float price_per_entity;
 
-  //  @ManyToOne
-    //@JoinColumn(name = "receipt_id", columnDefinition = "id")
-   // private Receipt receipt;
-   // @ManyToOne
-   // @JoinColumn(name = "product_id", columnDefinition = "id")
-   // private Product product;
+//    @ManyToOne
+//    @JoinColumn(name = "product_id", columnDefinition = "id")
+//    private Product product;
 
 }

@@ -24,5 +24,7 @@ public class Shop {
     @JoinColumn(name="address_id", referencedColumnName = "id")
     private Address address;
 
+    @OneToMany(mappedBy = "shop", cascade = CascadeType.ALL)
+    private List<Product> productList;
 
 }
