@@ -1,0 +1,28 @@
+package com.takeandgo.takeandgo.models;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import java.util.List;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name="shop")
+public class Shop {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    private String name;
+
+    @OneToOne
+    @JoinColumn(name="address_id", referencedColumnName = "id")
+    private Address address;
+
+
+}
