@@ -1,5 +1,6 @@
 package com.takeandgo.takeandgo.controllers;
 
+import com.takeandgo.takeandgo.dtos.UserDTO;
 import com.takeandgo.takeandgo.models.User;
 import com.takeandgo.takeandgo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class UserController {
     }
 
     @GetMapping("/getUsers")
-    public ResponseEntity <List<User>> getAllUsers(){
+    public ResponseEntity <List<UserDTO>> getAllUsers(){
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
     }
     @PostMapping("/addUser")
