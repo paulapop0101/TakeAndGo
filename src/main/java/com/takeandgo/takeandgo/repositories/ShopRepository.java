@@ -1,4 +1,7 @@
 package com.takeandgo.takeandgo.repositories;
 
-public interface ShopRepository {
+import com.takeandgo.takeandgo.models.Shop;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ShopRepository extends JpaRepository<Shop,Integer> {
 }
