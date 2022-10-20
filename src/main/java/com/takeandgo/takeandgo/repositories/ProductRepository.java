@@ -1,6 +1,7 @@
 package com.takeandgo.takeandgo.repositories;
 
+import com.takeandgo.takeandgo.models.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ProductRepository extends JpaRepository<ProductRepository,Integer> {
+public interface ProductRepository extends JpaRepository<Product,Integer> {
 }
