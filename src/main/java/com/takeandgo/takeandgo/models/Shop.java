@@ -20,7 +20,7 @@ public class Shop {
 
     private String name;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="address_id", referencedColumnName = "id")
     private Address address;
 
