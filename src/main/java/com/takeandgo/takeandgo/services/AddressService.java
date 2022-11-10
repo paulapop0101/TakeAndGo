@@ -19,7 +19,7 @@ public class AddressService {
 
         this.addressRepository = addressRepository;
     }
-    public List<AddressDTO> getAllAddres(){
+    public List<AddressDTO> getAllAddress(){
         return  addressMapper.toDTO(addressRepository.findAll());
     }
 }

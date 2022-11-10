@@ -17,4 +17,6 @@ public class Address {
     private int id;
     private String street;
     private int number;
+    @OneToOne(mappedBy = "address")
+    private Shop shop;
 }
