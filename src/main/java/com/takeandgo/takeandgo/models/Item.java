@@ -27,6 +27,9 @@ public class Item {
     private Product product;
 
     @ManyToOne
-    @JoinColumn(name = "receipt_id", referencedColumnName = "id")
-    private Receipt receipt;
+    @JoinColumn(name = "cart_id", referencedColumnName = "id")
+    private Cart cart;
+
+
+
 }
