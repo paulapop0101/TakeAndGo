@@ -27,9 +27,13 @@ public class CardController {
     }
 
     @PostMapping("/addCard")
-    public ResponseEntity<Boolean> addCard(@RequestBody final Card card){
-        cardService.addCard(card);
+    public ResponseEntity<Boolean> addCard(@RequestBody final CardDTO cardDTO){
+        cardService.addCard(cardDTO);
         return new ResponseEntity<>(true,HttpStatus.OK);
+    }
+    @DeleteMapping("/deleteCard/{id}")
+    public ResponseEntity<Boolean> deleteCard(@PathVariable final int id){
+        return new ResponseEntity<>(cardService.deleteCard(id),HttpStatus.OK);
     }
 
 

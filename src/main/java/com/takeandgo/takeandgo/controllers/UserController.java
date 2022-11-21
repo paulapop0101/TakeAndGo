@@ -1,12 +1,11 @@
 package com.takeandgo.takeandgo.controllers;
 
+import com.takeandgo.takeandgo.dtos.UserCreateDTO;
 import com.takeandgo.takeandgo.dtos.UserDTO;
-import com.takeandgo.takeandgo.models.User;
 import com.takeandgo.takeandgo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,8 +26,8 @@ public class UserController {
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
     }
     @PostMapping("/addUser")
-    public ResponseEntity <Boolean> addUser(@RequestBody final User user){
-        userService.addUser(user);
+    public ResponseEntity <Boolean> addUser(@RequestBody final UserCreateDTO userCreateDTO){
+        userService.addUser(userCreateDTO);
         return new ResponseEntity<>(true,HttpStatus.OK);
     }
 }

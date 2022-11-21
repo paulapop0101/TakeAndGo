@@ -13,9 +13,7 @@ import java.util.List;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface AddressMapper {
-    @Mappings({
-            @Mapping(target = "shopname", expression = "java(address.getShop().getName())")
-    })
+
     AddressDTO toDTO(Address address);
     Address toModel(AddressDTO addressDTO);
     List<AddressDTO> toDTO(List<Address> a);

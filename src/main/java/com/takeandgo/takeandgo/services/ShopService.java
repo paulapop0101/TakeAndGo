@@ -1,9 +1,7 @@
 package com.takeandgo.takeandgo.services;
 
 import com.takeandgo.takeandgo.dtos.ShopDTO;
-import com.takeandgo.takeandgo.dtos.UserDTO;
 import com.takeandgo.takeandgo.mappers.ShopMapper;
-import com.takeandgo.takeandgo.models.Shop;
 import com.takeandgo.takeandgo.repositories.ShopRepository;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;

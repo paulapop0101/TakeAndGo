@@ -1,8 +1,6 @@
 package com.takeandgo.takeandgo.controllers;
 
 import com.takeandgo.takeandgo.dtos.ShopDTO;
-import com.takeandgo.takeandgo.dtos.UserDTO;
-import com.takeandgo.takeandgo.models.User;
 import com.takeandgo.takeandgo.services.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

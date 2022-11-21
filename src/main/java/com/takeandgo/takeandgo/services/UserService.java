@@ -1,5 +1,6 @@
 package com.takeandgo.takeandgo.services;
 
+import com.takeandgo.takeandgo.dtos.UserCreateDTO;
 import com.takeandgo.takeandgo.dtos.UserDTO;
 import com.takeandgo.takeandgo.mappers.UserMapper;
 import com.takeandgo.takeandgo.models.User;
@@ -24,7 +25,8 @@ public class UserService {
         return userMapper.toDTO(userRepository.findAll());
 
     }
-    public void addUser(final User user){
+    public void addUser(final UserCreateDTO userCreateDTO){
+        User user = userMapper.toModel(userCreateDTO);
         userRepository.save(user);
     }
 }

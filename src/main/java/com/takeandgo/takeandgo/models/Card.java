@@ -20,7 +20,7 @@ public class Card {
 
     private String IBAN;
 
-    private Timestamp expDate;
+    private String expDate;
 
     private int CVV;
 

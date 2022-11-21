@@ -15,8 +15,11 @@ public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String street;
+
     private int number;
+
     @OneToOne(mappedBy = "address")
     private Shop shop;
 }

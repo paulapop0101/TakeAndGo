@@ -10,5 +10,4 @@ import lombok.NoArgsConstructor;
 public class AddressDTO {
     private String street;
     private int number;
-    private String shopname;
 }
