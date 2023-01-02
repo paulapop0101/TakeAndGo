@@ -5,9 +5,7 @@ import com.takeandgo.takeandgo.services.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,6 +31,17 @@ public class ItemController {
         itemService.addItem(itemDTO);
         return new ResponseEntity<>(true,HttpStatus.OK);
     }
+
+    @DeleteMapping("deleteItem/{id}")
+    public ResponseEntity<Boolean> deleteItem(@PathVariable final int id){
+        return new ResponseEntity<>(itemService.deleteItem(id),HttpStatus.OK);
+    }
+
+    @PostMapping("increaseItemQuantity/{id}")
+    public ResponseEntity<Boolean> increaseItemQuantity(@PathVariable final int id){
+        return new ResponseEntity<>(itemService.increaseItemQuantity(id),HttpStatus.OK);
+    }
+
 
 
 

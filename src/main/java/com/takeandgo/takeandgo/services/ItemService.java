@@ -24,5 +24,15 @@ public class ItemService {
     public void addItem(final ItemDTO itemDTO){
         Item item = itemMapper.toModel(itemDTO);
         // to do
+
+    }
+    public boolean deleteItem(final int itemId){
+        itemRepository.deleteById(itemId);
+        return true;
+    }
+
+    public boolean increaseItemQuantity(final int id){
+        //to do
+        return true;
     }
 }
