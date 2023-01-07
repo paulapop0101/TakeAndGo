@@ -19,6 +19,7 @@ public class Shop {
     private int id;
 
     private String name;
+    private String code_type;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="address_id", referencedColumnName = "id")

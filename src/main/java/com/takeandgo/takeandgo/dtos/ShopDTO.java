@@ -14,4 +14,5 @@ import java.util.List;
 public class ShopDTO {
     private String name;
     private AddressDTO addressDTO;
+    private String code_type;
 }
