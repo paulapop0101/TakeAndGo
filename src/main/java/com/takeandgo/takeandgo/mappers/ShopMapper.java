@@ -14,11 +14,15 @@ import java.util.List;
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface ShopMapper {
     @Mappings({
-            @Mapping(target = "addressDTO", expression = "java(toDTO(shop.getAddress()))")
+            @Mapping(target = "addressDTO", expression = "java(toDTO(shop.getAddress()))"),
+            @Mapping(target = "latitude", expression = "java(Float.valueOf(shop.getLatitude()))"),
+            @Mapping(target = "longitude", expression = "java(Float.valueOf(shop.getLongitude()))")
     })
     ShopDTO toDTO(Shop shop);
     @Mappings({
-            @Mapping(target = "address", expression = "java(toModel(shopDTO.getAddressDTO()))")
+            @Mapping(target = "address", expression = "java(toModel(shopDTO.getAddressDTO()))"),
+            @Mapping(target = "latitude", expression = "java(String.valueOf(shopDTO.getLatitude()))"),
+            @Mapping(target = "longitude", expression = "java(String.valueOf(shopDTO.getLongitude()))")
     })
     Shop toModel(ShopDTO shopDTO);
     AddressDTO toDTO(Address address);

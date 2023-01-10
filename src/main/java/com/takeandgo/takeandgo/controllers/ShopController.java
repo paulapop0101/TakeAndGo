@@ -25,7 +25,7 @@ public class ShopController {
         return new ResponseEntity<>(shopService.getShops(), HttpStatus.OK);
     }
     @PostMapping("/addShop")
-    public ResponseEntity <Boolean> addShops(@RequestBody final ShopDTO shopDTO){
+    public ResponseEntity <Boolean> addShop(@RequestBody final ShopDTO shopDTO){
         shopService.addShop(shopDTO);
         return new ResponseEntity<>(true,HttpStatus.OK);
     }

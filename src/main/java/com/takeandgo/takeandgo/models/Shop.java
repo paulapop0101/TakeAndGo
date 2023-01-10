@@ -20,6 +20,9 @@ public class Shop {
 
     private String name;
     private String code_type;
+    private String latitude;
+    private String longitude;
+
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="address_id", referencedColumnName = "id")

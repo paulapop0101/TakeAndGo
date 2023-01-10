@@ -12,7 +12,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ShopDTO {
+    private int id;
     private String name;
     private AddressDTO addressDTO;
     private String code_type;
+    private float latitude;
+    private float longitude;
 }
