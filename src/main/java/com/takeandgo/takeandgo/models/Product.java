@@ -23,6 +23,8 @@ public class Product {
 
     private String barcode;
 
+    private int status;
+
     @ManyToOne
     @JoinColumn(name = "shop_id", referencedColumnName = "id")
     private Shop shop;

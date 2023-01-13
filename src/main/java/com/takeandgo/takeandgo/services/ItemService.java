@@ -49,7 +49,7 @@ public class ItemService {
 
     public void addItem(final ItemCreateDTO itemCreateDTO){
         Product product = productRepository.findByBarcodeAndShopId(itemCreateDTO.getBarcode(),itemCreateDTO.getShopID());
-        if(product==null)
+        if(product==null || product.getStatus()==1)
             throw new EntityException("no such product");
 
         Cart cart = cartRepository.findByUserIdAndStatus(itemCreateDTO.getUserID(),0);
@@ -75,6 +75,8 @@ public class ItemService {
                 throw new EntityException("product already in cart");
             }
         }
+        product.setStatus(1);
+        productRepository.save(product);
     }
 
     private boolean itemNotInCart(final List<Item> itemList, int id) {
@@ -86,6 +88,9 @@ public class ItemService {
 
     public boolean deleteItem(final int itemId){
         Item item = itemRepository.getReferenceById(itemId);
+        Product product = item.getProduct();
+        product.setStatus(0);
+        productRepository.save(product);
         Cart cart = cartRepository.getReferenceById(item.getCart().getId());
         cart.setTotal(cart.getTotal()-item.getPrice());
         cartRepository.save(cart);

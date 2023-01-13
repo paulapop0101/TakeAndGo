@@ -24,12 +24,15 @@ public class CardService {
     }
 
     public List<CardDTO> getAllCards(int id){
-        return cardMapper.toDTO(cardRepository.findByUserId(id));
+        List<CardDTO> cards = cardMapper.toDTO(cardRepository.findByUserId(id));
+        for(CardDTO card: cards)
+            card.setCode(card.getCode().substring(card.getCode().length() - 4));
+        return cards;
     }
 
     public void addCard(final CardDTO cardDTO){
         Card card = cardMapper.toModel(cardDTO);
-        card.setUser(userRepository.getReferenceById(cardDTO.getUser_id()));
+//        card.setUser(userRepository.getReferenceById(cardDTO.getUser_id()));
         cardRepository.save(card);
     }
 

@@ -10,8 +10,10 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CardDTO {
-    private int user_id;
-    private String IBAN;
-    private String expDate;
-    private int CVV;
+    private int id;
+    private String code;
+
+    private int month;
+
+    private int year;
 }
