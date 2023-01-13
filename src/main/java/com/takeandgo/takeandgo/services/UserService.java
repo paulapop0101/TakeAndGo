@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -43,5 +44,14 @@ public class UserService {
     public UserDTO loginUser(final LogUserDTO userDTO) {
         User user = userValidation.userLoginValidation(userDTO);
         return userMapper.toDTO(user);
+    }
+
+    public Boolean updateUser(final UserDTO user) {
+        User user1 = userRepository.findById(user.getId());
+        user1.setFirstname(user.getFirstname());
+        user1.setLastname(user.getLastname());
+        user1.setEmail(user.getEmail());
+        userRepository.save(user1);
+        return true;
     }
 }

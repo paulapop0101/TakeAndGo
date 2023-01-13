@@ -35,4 +35,9 @@ public class UserController {
     public ResponseEntity <UserDTO> loginUser(@RequestBody final LogUserDTO user){
         return new ResponseEntity<>( userService.loginUser(user),HttpStatus.OK);
     }
+    @PutMapping("/updateUserr")
+    public ResponseEntity <Boolean> updateUser(@RequestBody final UserDTO user){
+        return new ResponseEntity<>( userService.updateUser(user),HttpStatus.OK);
+    }
+
 }
