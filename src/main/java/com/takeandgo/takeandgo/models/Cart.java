@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
  @Data
@@ -28,6 +29,13 @@ import java.util.List;
 
         @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
         private List<Item> itemList;
+
+        public Cart(int status, float total, User user){
+            this.status = status;
+            this.total = total;
+            this.user = user;
+            this.itemList = new ArrayList<>();
+        }
  }
 
 

@@ -21,9 +21,9 @@ public class CardController {
     @Autowired
     public CardController(final CardService cardService){ this.cardService=cardService;}
 
-    @GetMapping("/getCards")
-    public ResponseEntity<List<CardDTO>> getAllCards(){
-        return new ResponseEntity<>(cardService.getAllCards(), HttpStatus.OK);
+    @GetMapping("/getCards/{id}")
+    public ResponseEntity<List<CardDTO>> getAllCards(@PathVariable final int id){
+        return new ResponseEntity<>(cardService.getAllCards(id), HttpStatus.OK);
     }
 
     @PostMapping("/addCard")

@@ -23,8 +23,8 @@ public class CardService {
         this.userRepository = userRepository;
     }
 
-    public List<CardDTO> getAllCards(){
-        return cardMapper.toDTO(cardRepository.findAll());
+    public List<CardDTO> getAllCards(int id){
+        return cardMapper.toDTO(cardRepository.findByUserId(id));
     }
 
     public void addCard(final CardDTO cardDTO){

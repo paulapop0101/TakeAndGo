@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -16,13 +17,10 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private int quantity;
 
     private float price;
 
-    private float price_per_entity;
-
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Product product;
 
@@ -30,6 +28,12 @@ public class Item {
     @JoinColumn(name = "cart_id", referencedColumnName = "id")
     private Cart cart;
 
+    public Item(float price, Product product, Cart cart){
+
+        this.price=price;
+        this.cart=cart;
+        this.product=product;
+    }
 
 
 }

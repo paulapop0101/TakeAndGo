@@ -19,12 +19,9 @@ public class Product {
 
     private String name;
 
-    private String barcode;
-
     private  float price;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    private List<Item> itemList;
+    private String barcode;
 
     @ManyToOne
     @JoinColumn(name = "shop_id", referencedColumnName = "id")

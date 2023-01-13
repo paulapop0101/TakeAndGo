@@ -18,9 +18,11 @@ public class Card {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String IBAN;
+    private String code;
 
-    private String expDate;
+    private int month;
+
+    private int year;
 
     private int CVV;
 
