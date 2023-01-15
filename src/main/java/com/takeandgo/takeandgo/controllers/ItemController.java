@@ -42,12 +42,12 @@ public class ItemController {
         return new ResponseEntity<>(itemService.deleteItem(id),HttpStatus.OK);
     }
 
-    @PostMapping("increaseItemQuantity/{id}")
+    @DeleteMapping("increaseItemQuantity/{id}")
     public ResponseEntity<Boolean> increaseItemQuantity(@PathVariable final int id){
         return new ResponseEntity<>(itemService.increaseItemQuantity(id),HttpStatus.OK);
     }
 
-    @PostMapping("decreaseItemQuantity/{id}")
+    @DeleteMapping("decreaseItemQuantity/{id}")
     public ResponseEntity<Boolean> decreaseItemQuantity(@PathVariable final int id){
         return new ResponseEntity<>(itemService.decreaseQuantity(id),HttpStatus.OK);
     }
