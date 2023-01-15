@@ -47,6 +47,11 @@ public class ItemController {
         return new ResponseEntity<>(itemService.increaseItemQuantity(id),HttpStatus.OK);
     }
 
+    @PostMapping("decreaseItemQuantity/{id}")
+    public ResponseEntity<Boolean> decreaseItemQuantity(@PathVariable final int id){
+        return new ResponseEntity<>(itemService.decreaseQuantity(id),HttpStatus.OK);
+    }
+
 
 
 

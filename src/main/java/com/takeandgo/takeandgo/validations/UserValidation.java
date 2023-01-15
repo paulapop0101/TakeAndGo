@@ -58,7 +58,7 @@ public class UserValidation {
                 throw new EntityException(MessageUtil.getMessage("api.error.duplicate", new Object[]{"Account","email"}));
     }
 
-    private void checkPassword(final String password) {
+    public void checkPassword(final String password) {
         boolean uppercase=false;
         if(password.length()<8)
             throw new EntityException(MessageUtil.getMessage("api.error.password.format", null));

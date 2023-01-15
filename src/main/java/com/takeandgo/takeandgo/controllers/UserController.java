@@ -1,5 +1,6 @@
 package com.takeandgo.takeandgo.controllers;
 
+import com.takeandgo.takeandgo.dtos.ChangePasswordDTO;
 import com.takeandgo.takeandgo.dtos.LogUserDTO;
 import com.takeandgo.takeandgo.dtos.UserCreateDTO;
 import com.takeandgo.takeandgo.dtos.UserDTO;
@@ -38,6 +39,11 @@ public class UserController {
     @PutMapping("/updateUserr")
     public ResponseEntity <Boolean> updateUser(@RequestBody final UserDTO user){
         return new ResponseEntity<>( userService.updateUser(user),HttpStatus.OK);
+    }
+
+    @PutMapping("/changePassword")
+    public ResponseEntity <Boolean> changePassword(@RequestBody final ChangePasswordDTO changePasswordDTO){
+        return new ResponseEntity<>( userService.changePassword(changePasswordDTO),HttpStatus.OK);
     }
 
 }

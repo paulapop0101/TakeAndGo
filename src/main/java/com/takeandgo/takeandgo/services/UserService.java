@@ -1,5 +1,6 @@
 package com.takeandgo.takeandgo.services;
 
+import com.takeandgo.takeandgo.dtos.ChangePasswordDTO;
 import com.takeandgo.takeandgo.dtos.LogUserDTO;
 import com.takeandgo.takeandgo.dtos.UserCreateDTO;
 import com.takeandgo.takeandgo.dtos.UserDTO;
@@ -52,6 +53,16 @@ public class UserService {
         user1.setLastname(user.getLastname());
         user1.setEmail(user.getEmail());
         userRepository.save(user1);
+        return true;
+    }
+    public boolean changePassword(final ChangePasswordDTO userDTO) {
+        userValidation.checkPassword(userDTO.getNewPassword());
+        User user = userRepository.findById(userDTO.getId());
+        String newEncryptedPassword = PasswordUtil.getMd5(userDTO.getNewPassword());
+        if (!user.getPassword().equals(newEncryptedPassword))
+            throw new EntityException("Wrong Password");
+        user.setPassword(newEncryptedPassword);
+        userRepository.save(user);
         return true;
     }
 }

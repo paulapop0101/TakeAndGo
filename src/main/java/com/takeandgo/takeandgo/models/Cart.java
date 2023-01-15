@@ -27,14 +27,19 @@ import java.util.List;
         @JoinColumn(name = "user_id", referencedColumnName = "id")
         private User user;
 
+         @ManyToOne
+         @JoinColumn(name = "shop_id", referencedColumnName = "id")
+         private Shop shop;
+
         @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
         private List<Item> itemList;
 
-        public Cart(int status, float total, User user){
+        public Cart(int status, float total, User user, Shop shop){
             this.status = status;
             this.total = total;
             this.user = user;
             this.itemList = new ArrayList<>();
+            this.shop = shop;
         }
  }
 

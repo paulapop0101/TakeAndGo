@@ -8,10 +8,8 @@ import com.takeandgo.takeandgo.mappers.ItemMapper;
 import com.takeandgo.takeandgo.models.Cart;
 import com.takeandgo.takeandgo.models.Item;
 import com.takeandgo.takeandgo.models.Product;
-import com.takeandgo.takeandgo.repositories.CartRepository;
-import com.takeandgo.takeandgo.repositories.ItemRepository;
-import com.takeandgo.takeandgo.repositories.ProductRepository;
-import com.takeandgo.takeandgo.repositories.UserRepository;
+import com.takeandgo.takeandgo.models.Shop;
+import com.takeandgo.takeandgo.repositories.*;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,15 +26,17 @@ public class ItemService {
     private final UserRepository userRepository;
 
     private final ProductRepository productRepository;
+    private final ShopRepository shopRepository;
 
     private final ItemMapper itemMapper = Mappers.getMapper(ItemMapper.class);
 
     @Autowired
-    public ItemService(ItemRepository itemRepository, final CartRepository cartRepository, final UserRepository userRepository, final ProductRepository productRepository){
+    public ItemService(ItemRepository itemRepository, final CartRepository cartRepository, final UserRepository userRepository, final ProductRepository productRepository, ShopRepository shopRepository){
         this.itemRepository = itemRepository;
         this.cartRepository = cartRepository;
         this.userRepository = userRepository;
         this.productRepository = productRepository;
+        this.shopRepository = shopRepository;
     }
 
     public List<ItemDTO> getAllItem(int id) {
@@ -49,52 +49,75 @@ public class ItemService {
 
     public void addItem(final ItemCreateDTO itemCreateDTO){
         Product product = productRepository.findByBarcodeAndShopId(itemCreateDTO.getBarcode(),itemCreateDTO.getShopID());
-        if(product==null || product.getStatus()==1)
+        if(product==null || product.getQuantity()<1)
             throw new EntityException("no such product");
 
         Cart cart = cartRepository.findByUserIdAndStatus(itemCreateDTO.getUserID(),0);
         float price = product.getPrice();
         if(cart==null){
-            cart = new Cart(0,price,userRepository.getReferenceById(itemCreateDTO.getUserID()));
+            Shop shop = shopRepository.getReferenceById(itemCreateDTO.getShopID());
+            cart = new Cart(0,price,userRepository.getReferenceById(itemCreateDTO.getUserID()),shop);
             cartRepository.save(cart);
             cart = cartRepository.findByUserIdAndStatus(itemCreateDTO.getUserID(),0);
-            Item item = new Item(price,product,cart);
+            Item item = new Item(price,1,product,cart);
             itemRepository.save(item);
 
         }
         else{
-            if(itemNotInCart(cart.getItemList(),product.getId())) {
+            Item item = getExistingItemCart(cart.getItemList(),product.getId());
+            if(item==null) {
                 cart.setTotal(cart.getTotal() + price);
                 cartRepository.save(cart);
                 cart = cartRepository.findByUserIdAndStatus(itemCreateDTO.getUserID(), 0);
 
-                Item item = new Item(price, product, cart);
+                item = new Item(price,1,product,cart);
                 itemRepository.save(item);
             }
             else{
-                throw new EntityException("product already in cart");
+                cart.setTotal(cart.getTotal() + price);
+                cartRepository.save(cart);
+
+               item.setPrice(item.getPrice()+price);
+               item.setQuantity(item.getQuantity()+1);
+                itemRepository.save(item);
             }
         }
-        product.setStatus(1);
+        product.setQuantity(product.getQuantity()-1);
         productRepository.save(product);
     }
 
-    private boolean itemNotInCart(final List<Item> itemList, int id) {
+    private Item getExistingItemCart(final List<Item> itemList, int id) {
         for(Item item: itemList)
             if(item.getProduct().getId()==id)
-                return false;
-        return true;
+                return item;
+        return null;
     }
 
     public boolean deleteItem(final int itemId){
         Item item = itemRepository.getReferenceById(itemId);
         Product product = item.getProduct();
-        product.setStatus(0);
+        product.setQuantity(product.getQuantity()+item.getQuantity());
         productRepository.save(product);
         Cart cart = cartRepository.getReferenceById(item.getCart().getId());
         cart.setTotal(cart.getTotal()-item.getPrice());
         cartRepository.save(cart);
         itemRepository.deleteById(itemId);
+        return true;
+    }
+    public boolean decreaseQuantity(final int itemId){
+        Item item = itemRepository.getReferenceById(itemId);
+        Product product = item.getProduct();
+        if(item.getQuantity()>1){
+            product.setQuantity(product.getQuantity()+1);
+        productRepository.save(product);
+        Cart cart = cartRepository.getReferenceById(item.getCart().getId());
+        cart.setTotal(cart.getTotal()-product.getPrice());
+        cartRepository.save(cart);
+        item.setQuantity(item.getQuantity()-1);
+        item.setPrice(item.getPrice()-item.getPrice_per_entity());
+        itemRepository.save(item);
+        }
+
         return true;
     }
 //    public Item findByProduct(int productID){

@@ -30,9 +30,9 @@ public class CardService {
         return cards;
     }
 
-    public void addCard(final CardDTO cardDTO){
+    public void addCard(final CardDTO cardDTO,final int id){
         Card card = cardMapper.toModel(cardDTO);
-//        card.setUser(userRepository.getReferenceById(cardDTO.getUser_id()));
+        card.setUser(userRepository.findById(id));
         cardRepository.save(card);
     }
 

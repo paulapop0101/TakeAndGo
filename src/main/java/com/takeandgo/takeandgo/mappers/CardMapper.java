@@ -16,6 +16,9 @@ import java.util.List;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface CardMapper {
+    @Mappings({
+            @Mapping(target = "CVV", expression = "java(-1)")
+    })
     CardDTO toDTO(Card card);
     Card toModel(CardDTO cardDTO);
     List<CardDTO> toDTO(List<Card> cards);

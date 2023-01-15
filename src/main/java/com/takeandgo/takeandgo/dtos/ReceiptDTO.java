@@ -16,5 +16,14 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ReceiptDTO {
-    private int user_id;
+    private int id;
+    private int cart_id;
+
+    private float total;
+
+    private String shopName;
+
+    private String date;
+
+
 }

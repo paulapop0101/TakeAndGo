@@ -20,6 +20,10 @@ public class Item {
 
     private float price;
 
+    private int quantity;
+
+    private float price_per_entity;
+
     @OneToOne
     @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Product product;
@@ -28,11 +32,13 @@ public class Item {
     @JoinColumn(name = "cart_id", referencedColumnName = "id")
     private Cart cart;
 
-    public Item(float price, Product product, Cart cart){
+    public Item( float price_per_entity,int quantity, Product product, Cart cart){
 
-        this.price=price;
+        this.price=price_per_entity*quantity;
         this.cart=cart;
         this.product=product;
+        this.quantity=quantity;
+        this.price_per_entity=price_per_entity;
     }
 
 

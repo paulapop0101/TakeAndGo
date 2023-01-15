@@ -4,18 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class CardDTO {
+@AllArgsConstructor
+public class ChangePasswordDTO {
     private int id;
-    private String code;
+    private String oldPassword;
 
-    private int CVV;
-
-    private int month;
-
-    private int year;
+    private String newPassword;
 }

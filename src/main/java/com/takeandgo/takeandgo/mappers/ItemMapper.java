@@ -13,7 +13,8 @@ import java.util.List;
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface ItemMapper {
     @Mappings({
-            @Mapping(target = "name", expression = "java(item.getProduct().getName())")
+            @Mapping(target = "name", expression = "java(item.getProduct().getName())"),
+            @Mapping(target = "max_quantity", expression = "java(item.getProduct().getQuantity())")
     })
     ItemDTO toDTO(Item item);
     List<ItemDTO> toDTO(List<Item> items);

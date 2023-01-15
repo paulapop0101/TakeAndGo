@@ -26,9 +26,9 @@ public class CardController {
         return new ResponseEntity<>(cardService.getAllCards(id), HttpStatus.OK);
     }
 
-    @PostMapping("/addCard")
-    public ResponseEntity<Boolean> addCard(@RequestBody final CardDTO cardDTO){
-        cardService.addCard(cardDTO);
+    @PostMapping("/addCard/{id}")
+    public ResponseEntity<Boolean> addCard(@RequestBody final CardDTO cardDTO, @PathVariable final int id){
+        cardService.addCard(cardDTO,id);
         return new ResponseEntity<>(true,HttpStatus.OK);
     }
     @DeleteMapping("/deleteCard/{id}")
