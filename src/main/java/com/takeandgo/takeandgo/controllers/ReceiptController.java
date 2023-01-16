@@ -1,5 +1,6 @@
 package com.takeandgo.takeandgo.controllers;
 
+import com.takeandgo.takeandgo.dtos.IntDTO;
 import com.takeandgo.takeandgo.dtos.ReceiptDTO;
 import com.takeandgo.takeandgo.services.ReceiptService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class ReceiptController {
     }
 
     @PostMapping("/addOrder/{user_id}")
-    public ResponseEntity<Integer> addOrder(@PathVariable final int user_id){
+    public ResponseEntity<IntDTO> addOrder(@PathVariable final int user_id){
         return new ResponseEntity<>( receiptService.addOrder(user_id), HttpStatus.OK);
     }
     @DeleteMapping("/deleteOrder/{id}")

@@ -1,5 +1,6 @@
 package com.takeandgo.takeandgo.services;
 
+import com.takeandgo.takeandgo.dtos.IntDTO;
 import com.takeandgo.takeandgo.dtos.ReceiptDTO;
 import com.takeandgo.takeandgo.mappers.ReceiptMapper;
 import com.takeandgo.takeandgo.models.Cart;
@@ -39,7 +40,7 @@ public class ReceiptService {
         this.cartRepository = cartRepository;
     }
 
-    public int addOrder(final int userId){
+    public IntDTO addOrder(final int userId){
         Receipt receipt = new Receipt();
         receipt.setUser(userRepository.getReferenceById(userId));
         Cart cart =  cartRepository.findByUserIdAndStatus(userId,0);
@@ -50,7 +51,7 @@ public class ReceiptService {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         receipt.setDate(timestamp);
         receiptRepository.save(receipt);
-        return cart.getId();
+        return new IntDTO(cart.getId());
     }
     public boolean deleteOrder(final int id){
         Cart cart =  cartRepository.findByUserIdAndStatus(id,0);
