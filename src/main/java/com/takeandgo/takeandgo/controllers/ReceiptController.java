@@ -21,7 +21,7 @@ public class ReceiptController {
         this.receiptService = receiptService;
     }
 
-    @PostMapping("/addOrder/{user_id}")
+    @DeleteMapping("/addOrder/{user_id}")
     public ResponseEntity<IntDTO> addOrder(@PathVariable final int user_id){
         return new ResponseEntity<>( receiptService.addOrder(user_id), HttpStatus.OK);
     }
