@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface CardRepository extends JpaRepository<Card,Integer> {
     List<Card> findByUserId(int userId);
+
+    Card findCardByCode(String code);
 }

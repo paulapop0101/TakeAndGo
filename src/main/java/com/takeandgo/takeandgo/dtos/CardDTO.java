@@ -10,7 +10,6 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CardDTO {
-    private int id;
     private String code;
 
     private int CVV;

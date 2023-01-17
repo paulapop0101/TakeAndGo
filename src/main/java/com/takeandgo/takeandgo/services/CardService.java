@@ -1,6 +1,7 @@
 package com.takeandgo.takeandgo.services;
 
 import com.takeandgo.takeandgo.dtos.CardDTO;
+import com.takeandgo.takeandgo.exceptions.EntityException;
 import com.takeandgo.takeandgo.mappers.CardMapper;
 import com.takeandgo.takeandgo.models.Card;
 import com.takeandgo.takeandgo.repositories.CardRepository;
@@ -31,6 +32,8 @@ public class CardService {
     }
 
     public void addCard(final CardDTO cardDTO,final int id){
+        if(cardRepository.findCardByCode(cardDTO.getCode())!=null)
+            throw new EntityException("Card already exists");
         Card card = cardMapper.toModel(cardDTO);
         card.setUser(userRepository.findById(id));
         cardRepository.save(card);
