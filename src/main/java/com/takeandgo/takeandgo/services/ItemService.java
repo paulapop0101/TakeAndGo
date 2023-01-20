@@ -131,7 +131,18 @@ public class ItemService {
 //
 //    }
     public boolean increaseItemQuantity(final int id){
-        //to do
+        Item item = itemRepository.getReferenceById(id);
+        Product product = item.getProduct();
+        if(product.getQuantity()>0){
+            product.setQuantity(product.getQuantity()-1);
+            productRepository.save(product);
+            Cart cart = cartRepository.getReferenceById(item.getCart().getId());
+            cart.setTotal(cart.getTotal()+product.getPrice());
+            cartRepository.save(cart);
+            item.setQuantity(item.getQuantity()+1);
+            item.setPrice(item.getPrice()+item.getPrice_per_entity());
+            itemRepository.save(item);
+        }
         return true;
     }
 
@@ -144,5 +155,10 @@ public class ItemService {
         for(Item item : items)
             total+=item.getPrice();
         return new PriceDTO(total);
+    }
+
+    public List<ItemDTO> getItems(int id) {
+        Cart cart = cartRepository.getReferenceById(id);
+        return itemMapper.toDTO(cart.getItemList());
     }
 }

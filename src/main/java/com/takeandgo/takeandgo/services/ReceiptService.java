@@ -55,14 +55,15 @@ public class ReceiptService {
     }
     public boolean deleteOrder(final int id){
         Cart cart =  cartRepository.findByUserIdAndStatus(id,0);
-        Product product;
-        for(Item item: cart.getItemList())
-        {
-            product=item.getProduct();
-            product.setQuantity(product.getQuantity() + item.getQuantity());
-            productRepository.save(product);
+        if(cart!=null) {
+            Product product;
+            for (Item item : cart.getItemList()) {
+                product = item.getProduct();
+                product.setQuantity(product.getQuantity() + item.getQuantity());
+                productRepository.save(product);
+            }
+            cartRepository.deleteById(cart.getId());
         }
-        cartRepository.deleteById(cart.getId());
         return true;
     }
 

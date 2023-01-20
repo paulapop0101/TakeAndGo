@@ -25,6 +25,10 @@ public class ItemController {
     public ResponseEntity<List<ItemDTO>> getAllItems(@PathVariable final int id){
         return new ResponseEntity<>(itemService.getAllItem(id), HttpStatus.OK);
     }
+    @GetMapping("/getItemsByCart/{id}")
+    public ResponseEntity<List<ItemDTO>> getItems(@PathVariable final int id){
+        return new ResponseEntity<>(itemService.getItems(id), HttpStatus.OK);
+    }
     @GetMapping("/getPrice/{id}")
     public ResponseEntity<PriceDTO> getPrice(@PathVariable final int id){
         return new ResponseEntity<>(itemService.getPrice(id), HttpStatus.OK);
