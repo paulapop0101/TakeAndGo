@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface ReceiptRepository extends JpaRepository<Receipt,Integer> {
 
-    List<Receipt> findReceiptsByUserId(int userId);
+    List<Receipt> findReceiptsByUserIdOrderByDateDesc(int userId);
 
     Receipt findReceiptByCart_Id(int cartId);
 }

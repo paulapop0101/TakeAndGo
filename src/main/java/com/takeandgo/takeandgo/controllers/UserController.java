@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = {"http://localhost:8100","http://localhost:8080","http://localhost:4200","http://192.168.1.103:4200"})
 public class UserController {
 
     private final UserService userService;
@@ -37,7 +37,7 @@ public class UserController {
         return new ResponseEntity<>( userService.loginUser(user),HttpStatus.OK);
     }
     @PutMapping("/updateUserr")
-    public ResponseEntity <Boolean> updateUser(@RequestBody final UserDTO user){
+    public ResponseEntity <UserDTO> updateUser(@RequestBody final UserDTO user){
         return new ResponseEntity<>( userService.updateUser(user),HttpStatus.OK);
     }
 

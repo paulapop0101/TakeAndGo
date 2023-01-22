@@ -8,8 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProductDTO {
-    private String name;
+    private int id;
     private String barcode;
-    private float price;
-    private int shopID;
 }

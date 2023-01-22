@@ -68,7 +68,7 @@ public class ReceiptService {
     }
 
     public List<ReceiptDTO> getReceipts(int userId) {
-        return receiptMapper.toDTO(receiptRepository.findReceiptsByUserId(userId));
+        return receiptMapper.toDTO(receiptRepository.findReceiptsByUserIdOrderByDateDesc(userId));
     }
 
     public ReceiptDTO getReceipt(final int cart_id){

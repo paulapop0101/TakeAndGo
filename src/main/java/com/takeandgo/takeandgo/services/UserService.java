@@ -47,13 +47,13 @@ public class UserService {
         return userMapper.toDTO(user);
     }
 
-    public Boolean updateUser(final UserDTO user) {
-        User user1 = userRepository.findById(user.getId());
+    public UserDTO updateUser(final UserDTO user) {
+        User user1 = userRepository.getReferenceById(user.getId());
         user1.setFirstname(user.getFirstname());
         user1.setLastname(user.getLastname());
         user1.setEmail(user.getEmail());
         userRepository.save(user1);
-        return true;
+        return user;
     }
     public boolean changePassword(final ChangePasswordDTO userDTO) {
         userValidation.checkPassword(userDTO.getNewPassword());

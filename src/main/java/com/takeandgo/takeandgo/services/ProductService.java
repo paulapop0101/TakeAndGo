@@ -23,11 +23,10 @@ public class ProductService {
     public ProductService(ProductRepository productRepository, ShopRepository shopRepository) {
         this.productRepository = productRepository;
         this.shopRepository = shopRepository;
-    }
+}
 
     public ProductDTO addProduct(final ProductDTO productDTO){
         Product product = productMapper.toModel(productDTO);
-        product.setShop(shopRepository.getReferenceById(productDTO.getShopID()));
         productRepository.save(product);
         return productDTO;
     }

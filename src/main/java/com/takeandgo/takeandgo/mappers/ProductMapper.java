@@ -11,9 +11,7 @@ import java.util.List;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface ProductMapper {
-    @Mappings({
-            @Mapping(target = "shopID", expression = "java(product.getShop().getId())")
-    })
+
     ProductDTO toDTO(Product product);
 
     Product toModel(ProductDTO productDTO);
